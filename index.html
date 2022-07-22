@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang='en' >
+
+<head>
+
+    <title>Jogo da memória</title>
+    <meta charset='UTF-8' >
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' >
+    <link rel='stylesheet' href='./style.css' >
+	<script type="text/javascript">
+	
+		function startTimer(duration, display) {
+			var timer = duration, minutes, seconds;
+			setInterval(function () {
+				minutes = parseInt(timer / 60, 10);
+				seconds = parseInt(timer % 60, 10);
+				minutes = minutes < 10 ? "0" + minutes : minutes;
+				seconds = seconds < 10 ? "0" + seconds : seconds;
+				display.textContent = "Tempo : "+minutes + ":" + seconds;
+				
+				if (gfinal == false ) {				
+					if (--timer < 0) {
+						timer = duration;
+						gvida = gvida-1;
+						if (gvida > 0){
+							document.getElementById("vidas").innerHTML = "Vidas : " + gvida;
+							alert('Fim Tempo !!! ');
+						}else{
+							ggameover = true;
+							
+							exit;
+							alert('Game Over');
+						}
+					}
+				}
+			}, 1000);
+		}
+		
+		
+		window.onload = function () {			
+			var duration = 60 * 1; // Converter para segundos
+			
+			document.getElementById("vidas").innerHTML = "Vidas : " + gvida;
+			document.getElementById("fase").innerHTML = "Fase : " + gfase;		
+			display = document.querySelector('#timer'); // selecionando o timer
+			startTimer(duration, display); // iniciando o timer
+			
+		};
+
+	
+	
+	
+		function playAudio() { //sound 
+			var x = document.getElementById("myAudio"); 
+			x.play().loop = true; 
+		} 
+		
+		function playAudioS() { // parar sound 
+			var x = document.getElementById("myAudio"); 
+			x.pause(); 
+		}
+		
+		function playv(){ // virar
+			var x = document.getElementById("myAudiov"); 
+			x.play(); 
+		}	
+		
+		function playf(){ // falha
+			var x = document.getElementById("myAudiof"); 
+			x.play(); 
+		}	
+
+		function playa(){ //acerto
+			var x = document.getElementById("myAudioa"); 
+			x.play(); 
+			
+		}	
+		
+		function playw(){ // vitoria
+			var x = document.getElementById("myAudiow"); 
+			playAudioS();
+			x.play(); 
+		}	
+		
+		// sistema de fases 
+		
+	</script>
+
+</head>
+
+<body onclick='playAudio();'>
+
+
+
+	<audio id="myAudio" >
+	  <source src="audio_file.mp3" type="audio/mpeg">
+	</audio>	
+	
+	<audio id="myAudiov" >
+	  <source src="smb_flagpole.mp3" type="audio/mpeg">
+	</audio>
+
+	<audio id="myAudiof" >
+	  <source src="smb_bowserfalls.mp3" type="audio/mpeg">
+	</audio>
+	
+	<audio id="myAudioa" >
+	  <source src="smb_powerup.mp3" type="audio/mpeg">
+	</audio>
+	
+	<audio id="myAudiow" >
+	  <source src="smb_stage_clear.mp3" type="audio/mpeg">
+	</audio>
+
+
+	<div style="font-size: 30px;color: white;margin-left: 20px;margin-top: 20px;">
+		<div id="fase">Fase	:  </div>
+		<div id="acertos">Acertos : </div> 		
+		<div id="pontos">Pontos : 	</div>	
+		<div id="jogadas">Jogadas :  </div> 
+		<div id="vidas">Vidas :  </div>
+		<div id="timer">Tempo	: 01:00 </div>
+	</div>
+
+
+
+    <main class='memory-game' >
+	
+        <div class='card' data-card='bowser' >
+            <img class='card-front' src='./img/bowser.jpg' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='luigi' >
+            <img class='card-front' src='./img/luigi.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='mario' >
+            <img class='card-front' src='./img/mario.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='peach' >
+            <img class='card-front' src='./img/peach.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='toad' >
+            <img class='card-front' src='./img/toad.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='yoshi' >
+            <img class='card-front' src='./img/yoshi.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='bowser' >
+            <img class='card-front' src='./img/bowser.jpg' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='luigi' >
+            <img class='card-front' src='./img/luigi.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='mario' >
+            <img class='card-front' src='./img/mario.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='peach' >
+            <img class='card-front' src='./img/peach.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='toad' >
+            <img class='card-front' src='./img/toad.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+        <div class='card' data-card='yoshi' >
+            <img class='card-front' src='./img/yoshi.png' alt='face' >
+            <img class='card-back' src='./img/box.png' alt='verso' >
+        </div>
+		
+		
+    </main>
+	<script src='./script.js' >
+	</script>
+</body>
+</html>
